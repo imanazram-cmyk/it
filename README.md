@@ -1,20 +1,15 @@
-# expense-tracker
+# log-analyzer
 
-Hold styr på dine udgifter fra terminalen. Alt gemmes i en almindelig CSV-fil, som du også kan åbne i Excel eller Google Sheets.
+Laver et hurtigt overblik over en adgangslog fra Apache eller Nginx (combined-format): antal requests, datamængde, statuskoder, de mest aktive IP-adresser, mest besøgte stier og stier der giver fejl (4xx/5xx).
 
 ## Brug
 
 ```bash
-python expenses.py add 49.50 mad Frokost med Anna
-python expenses.py add 299 tøj Nye sko --date 2026-11-10
-python expenses.py list
-python expenses.py list --month 2026-11
-python expenses.py summary
+python logsum.py /var/log/nginx/access.log
+python logsum.py access.log -n 10      # vis top 10 i stedet for top 5
 ```
 
-`summary` viser, hvor meget du har brugt per kategori, med procentandel.
-
-Data gemmes i `~/.expenses.csv`. Sæt miljøvariablen `EXPENSE_FILE` for at bruge en anden fil.
+Linjer, der ikke kan læses, bliver sprunget over og talt med til sidst.
 
 ## Krav
 
